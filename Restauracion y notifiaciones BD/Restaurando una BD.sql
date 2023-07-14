@@ -15,7 +15,8 @@ with
 move 'Neptuno_DATA' to 'E:\Respaldo BD\Neptuno\MDF\Neptuno.mdf',
 move 'Extension_I' to 'E:\Respaldo BD\Neptuno\NDF\Extension_I.ndf',
 move  'Extensión_II'  to 'E:\Respaldo BD\Neptuno\NDF\Extension_II.ndf',
-move  'Neptuno_log' to 'E:\Respaldo BD\Neptuno\LDF\Neptuno_log.ldf'
+move  'Neptuno_log' to 'E:\Respaldo BD\Neptuno\LDF\Neptuno_log.ldf',
+NORECOVERY
 
 
 -- Backup Full de Base de Datos Neptuno
@@ -48,6 +49,9 @@ Restore headeronly from disk =
 'E:\Respaldo BD\EjemploRestauracion.bak'
 
 
+USE master
+GO
+
 Restore Database Neptuno
 from Neptuno_BK
 with file = 1, NORECOVERY,
@@ -55,15 +59,8 @@ REPLACE
 
 Restore Database Neptuno
 from Neptuno_BK
-with file = 2, NORECOVERY
-
-Restore Database Neptuno
-from Neptuno_BK
-with file = 3, NORECOVERY
-
-Restore Database Neptuno
-from Neptuno_BK
-with file = 7, NORECOVERY
+with file = 2, NORECOVERY,
+REPLACE
 
 Restore Database Neptuno
 from Neptuno_BK
@@ -71,8 +68,18 @@ with file = 10, NORECOVERY
 
 Restore Database Neptuno
 from Neptuno_BK
-with file = 17, NORECOVERY
+with file = 11, NORECOVERY
 
+Restore Database Neptuno
+from Neptuno_BK
+with file = 15, NORECOVERY
+
+Restore Database Neptuno
+from Neptuno_BK
+with file = 16, NORECOVERY
+
+----------------------------------
+--BACKUPS BUGUEADOS.
 Restore Database Neptuno
 from Neptuno_BK
 with file = 18, NORECOVERY
@@ -82,8 +89,17 @@ from Neptuno_BK
 with file = 19, RECOVERY
 
 
+
 ----
 USE master
 GO
 drop database Neptuno
 GO
+
+use Neptuno
+go
+
+SELECT * FROM Empleados
+--9
+select * from Pedidos
+--77

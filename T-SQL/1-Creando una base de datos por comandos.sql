@@ -10,11 +10,11 @@ GO
 
 CREATE TABLE Cliente
 (
-IdCliente INT PRIMARY KEY IDENTITY(0,1),
+IdCliente INT PRIMARY KEY IDENTITY(0,1),  --Comienza desde cliente 0,1,2 ...
 Primer_Nombre VARCHAR(80) NOT NULL,
 Primer_Apellido VARCHAR(80) NOT NULL,
 Cedula VARCHAR(16),
-Correo VARCHAR(20)
+Correo VARCHAR(50)
 )
 
 CREATE TABLE Mecanico
@@ -131,3 +131,17 @@ CREATE TABLE Vehiculo
     Anio INT,
     FOREIGN KEY (IdCliente) REFERENCES Clientes(IdCliente)
 );
+
+
+
+--Para ALTERAR una columna en X tabla
+
+ALTER TABLE CLIENTE 
+ALTER COLUMN Correo VARCHAR(70)
+
+
+--RESETEAR EL IDENTITY DE UNA TABLA 
+
+DBCC CHECKIDENT('Cliente', RESEED, -1); --Comienza desde 0
+DBCC CHECKIDENT('Cliente', RESEED, 0); --Comienza desde 1
+
